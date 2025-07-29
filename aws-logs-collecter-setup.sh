@@ -44,7 +44,7 @@ services:
       - ${BASE_PATH}:/opt/docker/${DIR_NAME}
       - ${BASE_PATH}/conf/${LOG_TYPE}.yaml:/usr/share/filebeat/filebeat.yml
       - ${BASE_PATH}/conf/registry/${LOG_TYPE}:/usr/share/filebeat/data/${LOG_TYPE}
-      - ${BASE_PATH}/var/tmp:/opt/docker/${DIR_NAME}/var/tmp
+      - ${BASE_PATH}/var/tmp:${BASE_PATH}/var/tmp
     environment:
       - BEAT_PATH=/usr/share/filebeat
     user: root
@@ -128,9 +128,16 @@ processors:
 
 #============================== 🎯 Output ===================================#
 
-output.logstash:
-  hosts:
-    - 127.0.0.1:12222
+#output.logstash:
+#  hosts:
+#    - 127.0.0.1:12222
+
+output.file:
+  enabled: true
+  path: "${BASE_PATH}/var/tmp"
+  filename: "sample.log"
+  rotate_every_kb: 10000
+  number_of_files: 7
 
 #============================= ⚙️  Seccomp Settings ==========================#
 
