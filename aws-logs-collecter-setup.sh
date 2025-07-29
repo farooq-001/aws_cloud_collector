@@ -70,6 +70,43 @@ filebeat.inputs:
     access_key_id: ${ACCESS_KEY_ID}
     secret_access_key: ${SECRET_ACCESS_KEY}
 
+### cloudtrail ####
+#- type: aws-s3
+#  enabled: true
+#  fields:
+#    log.type: aws_cloudtrail
+#  fields_under_root: true
+#  queue_url: ${QUEUE_URL}
+#  access_key_id: ${ACCESS_KEY_ID}
+#  secret_access_key: ${SECRET_ACCESS_KEY}
+
+### elb ####
+#- type: aws-s3
+#  queue_url: ${QUEUE_URL}
+#  bucket_list_interval: 120s
+#  credential_profile_name: elastic-beats
+#  expand_event_list_from_field: Records
+#  access_key_id: ${ACCESS_KEY_ID}
+#  secret_access_key: ${SECRET_ACCESS_KEY}
+#  fields:
+#   observer.type : cloud-aws
+#   observer.product : elb
+
+#- type: aws-cloudwatch
+#  log_group_arn: ${LOG_GROUP_ARN}
+#  scan_frequency: 5m
+#  latency: 1m
+#  credential_profile_name: elastic-beats
+#  access_key_id: ${ACCESS_KEY_ID}
+#  secret_access_key: ${SECRET_ACCESS_KEY}
+#  fields:
+#   log.type: dietkare-audit
+#   observer.type : cloud-aws
+#   observer.name : dietkare-audit
+#   observer.product : rds
+
+
+
 #=========================== 🌏 Global Options ==============================#
 
 filebeat.registry.path: /usr/share/filebeat/data/${LOG_TYPE}
